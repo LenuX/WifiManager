@@ -9,12 +9,6 @@
     android:layout_height="wrap_content" 
     android:text="WifiConnector - Creation d'un nouveau profil"
     />
-    <TableLayout
-    android:id="@+id/mytablelayout"
-	android:layout_width="fill_parent" 
-    android:layout_height="fill_parent"  
-    />
-
 </LinearLayout>
   
   
