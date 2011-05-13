@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-    <TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="WifiConnector - Creation d'un nouveau profil"
-    />
+    android:layout_height="fill_parent">
+    
+    <LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    	<TextView  
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:text="WifiConnector - Creation d'un nouveau profil"/>
+    </LinearLayout>	
+    
+   <ScrollView
+   android:layout_width="fill_parent"
+   android:layout_height="1px"
+   android:layout_weight="1"
+   android:fillViewport="true">
+   		<LinearLayout
+   		android:id="@+id/layoutlist"
+    	android:orientation="vertical"
+   		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    	</LinearLayout>  
+   </ScrollView>
+   
+   	<LinearLayout
+    	android:orientation="horizontal"
+   		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    	<Button android:id="@+id/buttonList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voir vos profils" />
+
+    </LinearLayout>   	
+    	
 </LinearLayout>
   
   
