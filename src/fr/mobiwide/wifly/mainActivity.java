@@ -1,8 +1,10 @@
 package fr.mobiwide.wifly;
 
 import java.util.ArrayList;
+
+import object.Form;
 import object.Input;
-import parser.Parser;
+import parser.HtmlParser;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,27 +35,27 @@ public class mainActivity extends Activity {
         //InputStream sourceUrlString = null;
         String sourceUrlString = "http://www.google.fr";
 		
-		try {
-			
-			//sourceUrlString=getAssets().open("data/freewifi.htm");
-			Parser myparser = new Parser(sourceUrlString);
-			
-			ArrayList<Input> inputsAndroid = new ArrayList<Input>();
-			inputsAndroid = myparser.getList();
-			
-			Log.i(LOG_TAG, "LISTE  :" + inputsAndroid ); 
-			
-			if(isGoogle(inputsAndroid)){
-				Log.i(LOG_TAG, "Vous etes déja connecté");
-			}
-			else{
-				Log.i(LOG_TAG, "Vous n'etes pas connecté, création du formulaire ->");
-				makeForm(inputsAndroid);
-			}
-				
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			
+//			//sourceUrlString=getAssets().open("data/freewifi.htm");
+//			
+//			
+//			Form form = HtmlParser.parseFormFromFile(sourceUrlString);
+//
+//			
+//			Log.i(LOG_TAG, "LISTE  :" + inputsAndroid ); 
+//			
+//			if(isGoogle(inputsAndroid)){
+//				Log.i(LOG_TAG, "Vous etes déja connecté");
+//			}
+//			else{
+//				Log.i(LOG_TAG, "Vous n'etes pas connecté, création du formulaire ->");
+//				makeForm(inputsAndroid);
+//			}
+//				
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 		//On crée le Listener sur le Bouton
 		OnClickListener ButtonList = new OnClickListener()

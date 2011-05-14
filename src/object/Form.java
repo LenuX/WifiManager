@@ -1,25 +1,34 @@
 package object;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Form {
 
 		private String mMethod;
 		private String mAction;
-		private List<SuperInput> mInputList;
+		private List<Input> mInputList;
 	
 		public Form(String method, String action){
 			mMethod=method;
 			mAction=action;
-			
+			mInputList=new LinkedList<Input>();
 		}
 		
+		
+		
+		public String getRequest(){
+			String request = null;
+			
+			return request;
+		}
+
 		
 		@Override
 		public String toString() {
 			String s="Method:["+mMethod+"] Action:["+mAction+"] \n ListInput:[\n";
-			for(SuperInput input: mInputList){
+			for(Input input: mInputList){
 				s+=input;
 			}
 			s+="]";
@@ -44,13 +53,12 @@ public class Form {
 			mAction = action;
 		}
 
-		public List<SuperInput> getInputList() {
+		public List<Input> getInputList() {
 			return mInputList;
 		}
 
-		public void setInputList(List<SuperInput> inputList) {
+		public void setInputList(List<Input> inputList) {
 			mInputList = inputList;
 		}
-
 
 	}
