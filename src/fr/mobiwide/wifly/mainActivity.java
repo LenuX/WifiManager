@@ -2,9 +2,10 @@ package fr.mobiwide.wifly;
 
 import java.util.ArrayList;
 
-import object.Form;
-import object.Input;
-import parser.HtmlParser;
+import net.mobiwide.html.parser.FormParser;
+import net.mobiwide.html.parser.object.Form;
+import net.mobiwide.html.parser.object.Input;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +34,7 @@ public class mainActivity extends Activity {
       
         
         //InputStream sourceUrlString = null;
-        String sourceUrlString = "http://www.google.fr";
+//        String sourceUrlString = "http://www.google.fr";
 		
 //		try {
 //			
@@ -64,7 +65,7 @@ public class mainActivity extends Activity {
 		 public void onClick(View actuelView)
 		 {
 		 // On met en place le passage entre les deux activités sur ce Listener
-		 Intent intent = new Intent(mainActivity.this,pickActivity.class);
+		 Intent intent = new Intent(mainActivity.this, ProfileActivity.class);
 		 startActivity(intent);
 		 }
 		};

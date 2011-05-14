@@ -1,4 +1,4 @@
-package object;
+package net.mobiwide.html.parser.object;
 
 
 import java.util.LinkedList;

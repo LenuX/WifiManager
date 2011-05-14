@@ -1,14 +1,20 @@
-package parser;
+package net.mobiwide.html.parser;
 
-import net.htmlparser.jericho.*;
-import java.util.*;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.*;
-import object.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.HTMLElementName;
+import net.htmlparser.jericho.Segment;
+import net.htmlparser.jericho.Source;
+import net.mobiwide.html.parser.object.Form;
+import net.mobiwide.html.parser.object.Input;
 
 
-public class HtmlParser {
+public class FormParser {
 	
 	public static ArrayList<Input> inputs;
 	public static Form form;

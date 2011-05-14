@@ -1,10 +1,9 @@
-package parser;
+package fr.mobiwide.wifly.parser;
 
 import java.io.*;
 
-import object.Form;
-import object.Input;
-import object.Wifi;
+import net.mobiwide.html.parser.object.Form;
+import net.mobiwide.html.parser.object.Input;
 
 import org.jdom.Attribute;
 import org.jdom.Document;
@@ -12,6 +11,9 @@ import org.jdom.Element;
 import org.jdom.input.*;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+
+import fr.mobiwide.wifly.object.Wifi;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class XmlParser {
 //		write(myWifi, new String ("data/write_profil_free.xml")); // Fonction qui convertit un Wifi en .xml 
 //	}
 
-	static Wifi read(File file) {
+	public static Wifi read(File file) {
 		// On crée une instance de SAXBuilder
 		SAXBuilder sxb = new SAXBuilder();
 		Document document = null;
@@ -94,7 +96,7 @@ public class XmlParser {
 		return wifi;
 	}
 
-	static void write(Wifi wwifi, String file) {
+	public static void write(Wifi wwifi, String file) {
 		//Nous allons commencer notre arborescence en créant la racine XML "wifi"
 		Element wifi = new Element("wifi");
 		wifi.setAttribute(new Attribute("essid", wwifi.getESSID()));   // On ajoute les attributs de la balise wifi

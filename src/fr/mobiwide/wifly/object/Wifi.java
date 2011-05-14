@@ -1,4 +1,6 @@
-package object;
+package fr.mobiwide.wifly.object;
+
+import net.mobiwide.html.parser.object.Form;
 
 public class Wifi {
 
@@ -11,6 +13,15 @@ public class Wifi {
 		mSSID=SSID;
 	}
 
+	public CharSequence getDisplayName() {
+		return mESSID + "--" + mSSID;
+	}
+	
+	public String getFileName() {
+		//return mESSID + "_" + mSSID  + ".xml";
+		return mESSID + ".xml";
+	}
+	
 	@Override
 	public String toString() {
 		String s="WIFI [ essid:["+mESSID+"] ssid:["+mSSID+"] \n FORM:["+mForm+"]";	
@@ -41,6 +52,8 @@ public class Wifi {
 	public void setForm(Form form) {
 		mForm = form;
 	}
+
+
 	
 	
 }
