@@ -1,4 +1,4 @@
-package fr.mobiwide.wifly;
+package fr.mobiwide.wifly.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,6 @@ import android.util.Log;
 public class HomeActivity extends Activity {
 	
 	private static final String TAG = "HomeActivity";
-
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

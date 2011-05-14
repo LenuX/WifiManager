@@ -1,6 +1,10 @@
-package fr.mobiwide.wifly;
+package fr.mobiwide.wifly.ui;
 
 import java.util.ArrayList;
+
+import fr.mobiwide.wifly.R;
+import fr.mobiwide.wifly.R.id;
+import fr.mobiwide.wifly.R.layout;
 
 import net.mobiwide.html.parser.FormParser;
 import net.mobiwide.html.parser.object.Form;

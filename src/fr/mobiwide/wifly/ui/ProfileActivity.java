@@ -1,4 +1,4 @@
-package fr.mobiwide.wifly;
+package fr.mobiwide.wifly.ui;
 
 
 import java.io.File;
@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
-
-import fr.mobiwide.wifly.object.Wifi;
-import fr.mobiwide.wifly.parser.XmlParser;
 
 import net.mobiwide.utils.FileUtils;
 import android.app.AlertDialog;
@@ -25,7 +22,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+import fr.mobiwide.wifly.Wifly;
+import fr.mobiwide.wifly.object.Wifi;
+import fr.mobiwide.wifly.parser.XmlParser;
 
 public class ProfileActivity extends ListActivity implements OnItemClickListener {
 
@@ -71,9 +70,9 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 					else if (item == 1) {
 						
 					}
-					Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
-
 					
+					//Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
+
 				}
 			}).create();
 			break;
