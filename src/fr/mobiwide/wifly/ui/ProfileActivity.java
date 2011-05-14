@@ -22,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import fr.mobiwide.wifly.Wifly;
 import fr.mobiwide.wifly.object.Wifi;
 import fr.mobiwide.wifly.parser.XmlParser;
@@ -68,10 +69,9 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 						mAdapter.notifyDataSetChanged();
 					}
 					else if (item == 1) {
-						
+						Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
 					}
 					
-					//Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
 
 				}
 			}).create();

@@ -59,15 +59,15 @@ public class XmlParser {
 
 		Element rInputs = rForm.getChild("inputs"); 	// On descend d'un niveau (inputs)
 
-		List listInputs = rInputs.getChildren();// On crée une List contenant tous les input
+		List<Element> listInputs = rInputs.getChildren();// On crée une List contenant tous les input
 		
 		List<Input> inputs = new LinkedList<Input>();		// ArrayList pour stocker les inputs et les ajouter ensuite au Form
 
 		// On crée un Iterator sur notre liste
-		Iterator it = listInputs.iterator();
+		Iterator<Element> it = listInputs.iterator();
 
 		while (it.hasNext()) {   						// On parcours la liste pour construire le form
-			Element courant = (Element) it.next();		
+			Element courant = it.next();		
 
 			String name = courant.getAttributeValue("name");
 			String value = courant.getAttributeValue("value");			// On recupere les champs pour l'Input
@@ -76,11 +76,11 @@ public class XmlParser {
 
 			if (type.equals("menu")) { // Si l'element courant est de type "menu" on parcoure ses fils : options
 
-				List listOptions = courant.getChildren();
-				Iterator it2 = listOptions.iterator();
+				List<Element> listOptions = courant.getChildren();
+				Iterator<Element> it2 = listOptions.iterator();
 
 				while (it2.hasNext()) {
-					Element courantOptions = (Element) it2.next();
+					Element courantOptions = it2.next();
 					optionsList.add(courantOptions.getAttributeValue("value")); // et on recupere les valeurs
 				}
 
