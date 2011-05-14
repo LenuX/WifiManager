@@ -12,11 +12,13 @@ public class Input {
 
 	public Input(String name, String value, String type) {
 		mName = name;
-		mValue = value;
 		mType = type;
+		mValue = value;
+		
 		mOptionsList=new ArrayList<String>();
 		
 		if (mType==null){ mType="text"; }
+		if (mType.equals("checkbox")&& mValue==null){ mValue="unchecked"; }
 		
 	}
 	public Input(String name, String value, String type,ArrayList<String> optionsList) {
@@ -26,6 +28,8 @@ public class Input {
 		mOptionsList = optionsList;
 
 		if (mType==null){ mType="text"; }
+		if (mType.equals("checkbox")&& mValue==null){ mValue="unchecked"; }
+
 	}
 	
 	
