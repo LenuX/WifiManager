@@ -68,7 +68,7 @@ public class EditProfileActivity extends Activity {
 		dir.mkdir();
 		String pathToHtml = getFilesDir() + "/" + Wifly.HTMLFILE_DIR + "/aruba.html" ; 
 		FileUtils.inputStreamToFile(in, pathToHtml);
-		mForm = FormParser.parseFormFromFile(pathToHtml);
+		mForm = FormParser.parseForm(pathToHtml);
 		Log.i(TAG, mForm.toString());
 	}
 	
