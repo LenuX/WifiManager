@@ -5,15 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import fr.mobiwide.wifly.R;
-import fr.mobiwide.wifly.Wifly;
-import fr.mobiwide.wifly.object.Wifi;
-
 import net.mobiwide.html.parser.FormParser;
 import net.mobiwide.html.parser.object.Form;
 import net.mobiwide.html.parser.object.Input;
 import net.mobiwide.utils.FileUtils;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -26,6 +21,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import fr.mobiwide.wifly.R;
+import fr.mobiwide.wifly.Wifly;
 
 public class EditProfileActivity extends Activity {
 
@@ -34,7 +31,7 @@ public class EditProfileActivity extends Activity {
 	LinearLayout linear;
 	LayoutInflater inflater;
 
-	private Wifi mWifi;
+	//private Wifi mWifi;
 	private Form mForm;
 
 	@Override
@@ -101,8 +98,7 @@ public class EditProfileActivity extends Activity {
 			}
 			else{
 				return checkbox;
-			}
-			
+			}		
 		}
 		else if(input.getType().equals("select")){
 			
@@ -113,10 +109,7 @@ public class EditProfileActivity extends Activity {
 				
 				RadioButton rb = new RadioButton(this);
 				rb.setText(input.getOptionsList().get(i));
-				
-//				System.out.println(input.getValue());
-//				System.out.println(input.getOptionsList());
-				
+			
 				if(input.getValue().equals(input.getOptionsList().get(i))){
 					
 					rb.setChecked(true);
@@ -129,5 +122,4 @@ public class EditProfileActivity extends Activity {
 		def.setText(input.getType());
 		return def;
 	}
-
 }
