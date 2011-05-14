@@ -14,7 +14,7 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "onCreate");
 		
-		Intent intent = new Intent(this, ProfileActivity.class);
+		Intent intent = new Intent(this, EditProfileActivity.class);
     	startActivity(intent);
 	}
 
