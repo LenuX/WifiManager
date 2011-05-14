@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wifi essid="Univmed" ssid="ssid_univmed">
+	<form method="post" action="/auth/index.html/u">
+		<inputs>
+			<input name="user" value="" type="text" />
+			<input name="fqdn" value="u2" type="menu">
+				<option value="u2" />
+				<option value="u1" />
+				<option value="u3" />
+				<option value="tln" />
+				<option value="guest" />
+			</input>
+			<input name="password" value="" type="password" />
+			<input name="submit" value="Envoyer" type="submit" />
+		</inputs>
+	</form>
+</wifi>

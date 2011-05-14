@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wifi essid="freewifi" ssid="ssid_free">
+	<form method="post" action="http://www.FreeWifi.fr/Auth">
+		<inputs>
+			<input name="login" value="" type="text" />
+			<input name="password" value="" type="password"/>
+			<input name="conditions" value="unchecked" type="checkbox"/> 
+			<input name="maillist" value="checked" type="checkbox"/>
+			<input name="submit" value="Valider" type="submit"/>
+		</inputs>
+	</form>
+</wifi>
