@@ -19,16 +19,9 @@ public class FormParser {
 	public static ArrayList<Input> inputs;
 	public static Form form;
 	
-	
-	public static void main(String[] args) throws Exception {
-		
-		Form myform=parseFormFromFile("data/freewifi.html");
-		
-	}
-	
 	// FONCTIONS {  //
 	
-	public static Form parseFormFromFile(String sourceUrlString){     // Construction de l'objet Form
+	public static Form parseForm(String sourceUrlString){     // Construction de l'objet Form
 		
 		if (sourceUrlString.indexOf(':') == -1)	sourceUrlString = "file:" + sourceUrlString;
 		Source source=null;
