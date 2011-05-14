@@ -22,13 +22,13 @@ public class FormParser {
 	
 	public static void main(String[] args) throws Exception {
 		
-		parseFormFromFile("data/freewifi.html");
+		Form myform=parseFormFromFile("data/freewifi.html");
 		
 	}
 	
 	// FONCTIONS {  //
 	
-	public static void parseFormFromFile(String sourceUrlString){     // Construction de l'objet Form
+	public static Form parseFormFromFile(String sourceUrlString){     // Construction de l'objet Form
 		
 		if (sourceUrlString.indexOf(':') == -1)	sourceUrlString = "file:" + sourceUrlString;
 		Source source=null;
@@ -43,13 +43,15 @@ public class FormParser {
 		}
 		
 		inputs = new ArrayList<Input>(50);
-		displaySegments(source.getAllElements(HTMLElementName.FORM));
+		form=displaySegments(source.getAllElements(HTMLElementName.FORM));
 		
 		System.out.println("*********************AFFICHAGE DU FORM*********************\n");
 		System.out.print(form);
+		
+		return form;
 	}
 	                                                                                                                 
-	public static void displaySegments(List<? extends Segment> segments) {
+	public static Form displaySegments(List<? extends Segment> segments) {
 			
 		for (Element element : segments.get(0).getAllElements()) {
 			
@@ -59,6 +61,7 @@ public class FormParser {
 			
 		}
 		form.setInputList(inputs);
+		return form;
 	}
 
 	public static Input isUsefull(Element element) {
@@ -69,7 +72,12 @@ public class FormParser {
 		}
 		
 		else if (element.getName() == "input") {
-
+				
+				if(element.toString().contains("checked")){
+					Input SI = new Input(element.getAttributeValue("name"),"checked", element.getAttributeValue("type"));				
+					return SI;
+				}
+			
 				Input SI = new Input(element.getAttributeValue("name"),element.getAttributeValue("value"), element.getAttributeValue("type"));				
 				return SI;
 			
