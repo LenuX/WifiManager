@@ -20,8 +20,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class EditProfileActivity extends Activity {
 
@@ -72,8 +76,58 @@ public class EditProfileActivity extends Activity {
 	}
 	
 	public View inputToView (Input input) {
-		EditText editText = new EditText(this);
-		return editText;
+		
+		if(input.getType().equals("text")){
+			EditText text = new EditText(this);
+			text.setText("Text");
+			return text;
+		}
+		else if(input.getType().equals("password")){
+			EditText password = new EditText(this);
+			password.setText("Password");
+			return password;
+		}
+		else if(input.getType().equals("submit")){
+			Button submit = new Button(this);
+			submit.setText("Submit");
+			return submit;
+		}
+		else if(input.getType().equals("checkbox")){
+			CheckBox checkbox = new CheckBox(this);
+			
+			if(input.getValue().equals("checked")){
+				checkbox.setChecked(true);
+				return checkbox;
+			}
+			else{
+				return checkbox;
+			}
+			
+		}
+		else if(input.getType().equals("select")){
+			
+			RadioGroup rg = new RadioGroup(this);
+			
+			for(int i=0; i<input.getOptionsList().size();i++){
+				
+				
+				RadioButton rb = new RadioButton(this);
+				rb.setText(input.getOptionsList().get(i));
+				
+//				System.out.println(input.getValue());
+//				System.out.println(input.getOptionsList());
+				
+				if(input.getValue().equals(input.getOptionsList().get(i))){
+					
+					rb.setChecked(true);
+				}
+				rg.addView(rb);
+			}
+			return rg;
+		}
+		Button def = new Button(this);
+		def.setText(input.getType());
+		return def;
 	}
 
 }
