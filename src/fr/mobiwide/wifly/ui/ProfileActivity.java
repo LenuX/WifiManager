@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 	private List<Wifi> mListWifi = new LinkedList<Wifi>();
 	private Wifi mWifi;
 	private MyListAdapter mAdapter;
+	private int activityID = 0x100;
 	
 	static final int DG_ACTION = 0;
 	
@@ -69,7 +71,15 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 						mAdapter.notifyDataSetChanged();
 					}
 					else if (item == 1) {
-						Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
+//						Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
+						
+//						Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+//						startActivity(intent);
+
+						Intent intent = new Intent().setClass(ProfileActivity.this, EditProfileActivity.class);
+						intent.putExtra("mWifi", mWifi);
+						startActivityForResult(intent, activityID);
+					
 					}
 					
 

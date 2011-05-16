@@ -4,7 +4,10 @@ package net.mobiwide.html.parser.object;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Form {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Form implements Parcelable{
 
 		private String mMethod;
 		private String mAction;
@@ -59,6 +62,22 @@ public class Form {
 
 		public void setInputList(List<Input> inputList) {
 			mInputList = inputList;
+		}
+
+
+
+		@Override
+		public int describeContents() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}

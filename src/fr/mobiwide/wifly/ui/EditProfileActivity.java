@@ -3,6 +3,7 @@ package fr.mobiwide.wifly.ui;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.mobiwide.html.parser.FormParser;
@@ -11,18 +12,25 @@ import net.mobiwide.html.parser.object.Input;
 import net.mobiwide.utils.FileUtils;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import fr.mobiwide.wifly.R;
 import fr.mobiwide.wifly.Wifly;
+import fr.mobiwide.wifly.object.Wifi;
 
 public class EditProfileActivity extends Activity {
 
@@ -30,14 +38,18 @@ public class EditProfileActivity extends Activity {
 	private static final String TAG = "EditProfileActivity";
 	LinearLayout linear;
 	LayoutInflater inflater;
-
+	Wifi mWifi;
 	//private Wifi mWifi;
 	private Form mForm;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+        Bundle extras = getIntent().getExtras();
+        mWifi = extras.getParcelable("mWifi");
+		
 		linear = (LinearLayout) findViewById(R.id.layoutlist); 
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -50,6 +62,10 @@ public class EditProfileActivity extends Activity {
 		
 		//mForm = mWifi.getForm();
 		List<Input> inputList = mForm.getInputList();
+		
+		TextView label = new TextView(this);
+		label.setText("Creation du profil : +");
+		linear.addView(label);
 		
 		for (Input input : inputList) {
 			View view = inputToView(input);
@@ -87,6 +103,18 @@ public class EditProfileActivity extends Activity {
 		else if(input.getType().equals("submit")){
 			Button submit = new Button(this);
 			submit.setText("Submit");
+			
+			OnClickListener SubmitListener = new OnClickListener()
+			{
+				@Override
+				public void onClick(View actuelView)
+				{
+					
+					Toast.makeText(getApplicationContext() ,mWifi.toString(), Toast.LENGTH_LONG).show();
+				}
+			};
+			
+			submit.setOnClickListener(SubmitListener);
 			return submit;
 		}
 		else if(input.getType().equals("checkbox")){
@@ -102,24 +130,27 @@ public class EditProfileActivity extends Activity {
 		}
 		else if(input.getType().equals("select")){
 			
-			RadioGroup rg = new RadioGroup(this);
-			
-			for(int i=0; i<input.getOptionsList().size();i++){
+			Spinner spin = new Spinner(this);
+		    ArrayList<String> mOptionsList = new ArrayList<String>();
+		  
+		    for(int i=0; i<input.getOptionsList().size();i++){
+		    
+				mOptionsList.add(input.getOptionsList().get(i));
 				
-				
-				RadioButton rb = new RadioButton(this);
-				rb.setText(input.getOptionsList().get(i));
-			
-				if(input.getValue().equals(input.getOptionsList().get(i))){
-					
-					rb.setChecked(true);
-				}
-				rg.addView(rb);
-			}
-			return rg;
+		    }
+		   
+		    ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
+		              android.R.layout.simple_spinner_item, mOptionsList);
+		    
+		    spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    spin.setAdapter(spinnerArrayAdapter);
+
+			return spin;
 		}
+		
+		
 		Button def = new Button(this);
-		def.setText(input.getType());
+		def.setText("Default: "+input.getType());
 		return def;
 	}
 }
