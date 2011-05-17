@@ -21,40 +21,40 @@ public class HomeActivity extends Activity {
 		
 		
 		
+//		
+//		//On crée le Listener sur le Bouton
+//		OnClickListener ButtonList = new OnClickListener()
+//		{
+//			@Override
+//			public void onClick(View actuelView)
+//			{
+//				// On met en place le passage entre les deux activités sur ce Listener
+//				Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+//				startActivity(intent);
+//			}
+//		};
+//		
+//		Button list = (Button) findViewById(R.id.buttonList);
+//		list.setOnClickListener(ButtonList);
+//		
+//		//On crée le Listener sur le Bouton
+//		OnClickListener ButtonEdit = new OnClickListener()
+//		{
+//			@Override
+//			public void onClick(View actuelView)
+//			{
+//				// On met en place le passage entre les deux activités sur ce Listener
+//				Intent intent = new Intent(HomeActivity.this, EditProfileActivity.class);
+//				startActivity(intent);
+//			}
+//		};
+//		
+//		Button edit = (Button) findViewById(R.id.buttonEdit);
+//		edit.setOnClickListener(ButtonEdit);
 		
-		//On crée le Listener sur le Bouton
-		OnClickListener ButtonList = new OnClickListener()
-		{
-			@Override
-			public void onClick(View actuelView)
-			{
-				// On met en place le passage entre les deux activités sur ce Listener
-				Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-				startActivity(intent);
-			}
-		};
 		
-		Button list = (Button) findViewById(R.id.buttonList);
-		list.setOnClickListener(ButtonList);
-		
-		//On crée le Listener sur le Bouton
-		OnClickListener ButtonEdit = new OnClickListener()
-		{
-			@Override
-			public void onClick(View actuelView)
-			{
-				// On met en place le passage entre les deux activités sur ce Listener
-				Intent intent = new Intent(HomeActivity.this, EditProfileActivity.class);
-				startActivity(intent);
-			}
-		};
-		
-		Button edit = (Button) findViewById(R.id.buttonEdit);
-		edit.setOnClickListener(ButtonEdit);
-		
-		
-//		Intent intent = new Intent(this, EditProfileActivity.class);
-//    	startActivity(intent);
+		Intent intent = new Intent(this,ProfileActivity.class);
+		startActivity(intent);
 	}
 
 }

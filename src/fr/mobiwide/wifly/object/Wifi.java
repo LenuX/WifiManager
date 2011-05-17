@@ -16,13 +16,10 @@ public class Wifi implements Parcelable {
 	}
 
 	public Wifi(Parcel in)
-
 	{
-
 		this.mESSID = in.readString();
 		this.mSSID = in.readString();
-		// this.mForm = in.read
-
+		this.mForm = in.readParcelable(getClass().getClassLoader());
 	}
 
 	public CharSequence getDisplayName() {
@@ -82,7 +79,7 @@ public class Wifi implements Parcelable {
 		dest.writeParcelable(mForm, PARCELABLE_WRITE_RETURN_VALUE);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes" })
 	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
 
 		public Wifi createFromParcel(Parcel in)

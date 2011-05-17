@@ -64,7 +64,7 @@ public class EditProfileActivity extends Activity {
 		List<Input> inputList = mForm.getInputList();
 		
 		TextView label = new TextView(this);
-		label.setText("Creation du profil : +");
+		label.setText("WifiConnector - Creation du profil");
 		linear.addView(label);
 		
 		for (Input input : inputList) {

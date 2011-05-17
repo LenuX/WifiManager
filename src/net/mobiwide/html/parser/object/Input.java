@@ -2,7 +2,10 @@ package net.mobiwide.html.parser.object;
 
 import java.util.ArrayList;
 
-public class Input {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Input implements Parcelable {
 
 	private String mName; 
 	private String mValue;
@@ -30,6 +33,15 @@ public class Input {
 		if (mType==null){ mType="text"; }
 		if (mType.equals("checkbox")&& mValue==null){ mValue="unchecked"; }
 
+	}
+	
+	public Input(Parcel in)
+	{
+		this.mName = in.readString();
+		this.mValue = in.readString();
+		this.mType = in.readString();
+		
+		//this.mOptionsList = ;
 	}
 	
 	
@@ -73,6 +85,36 @@ public class Input {
 	public void setOptionsList(ArrayList<String> optionsList) {
 		mOptionsList = optionsList;
 	}
+	
+	
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		dest.writeString(mName);
+		dest.writeString(mValue);
+		dest.writeString(mType);
+		//
+	}
+	@SuppressWarnings({ "rawtypes" })
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+
+		public Input createFromParcel(Parcel in)
+		{
+			return new Input(in);
+		}
+
+		public Input[] newArray(int size)
+		{
+			return new Input[size];
+		}
+
+	};
 	
 
 }

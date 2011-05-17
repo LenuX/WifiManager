@@ -57,7 +57,7 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 		
 		switch (id) {
 		case DG_ACTION:
-			final CharSequence[] items = {"Remove", "Edit"};
+			final CharSequence[] items = {"Remove", "Edit","Affiche"};
 			dialog = new AlertDialog.Builder(ProfileActivity.this)
 			.setTitle("Action")
 			.setItems(items, new DialogInterface.OnClickListener() {
@@ -81,7 +81,9 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 						startActivityForResult(intent, activityID);
 					
 					}
-					
+					else if (item == 2) {
+						Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_LONG).show();
+					}
 
 				}
 			}).create();
