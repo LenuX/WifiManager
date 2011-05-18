@@ -1,6 +1,9 @@
 package net.mobiwide.html.parser.object;
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,21 +11,27 @@ public class Form implements Parcelable{
 
 		private String mMethod;
 		private String mAction;
-		private Parcelable[] mInputList;
+		private List<Input> mInputList;
 	
 		public Form(String method, String action){
 			mMethod=method;
 			mAction=action;
-			mInputList=null;
+			mInputList=new LinkedList<Input>();
 		}
 		
 		public Form(Parcel in)
 		{
 			this.mMethod = in.readString();
 			this.mAction = in.readString();
-			this.mInputList = in.readParcelableArray(getClass().getClassLoader());
 			
-		
+			int lList = in.readInt();
+			
+			mInputList=new LinkedList<Input>();
+			
+			for (int i = 0; i < lList; i++) {
+				Input input =  in.readParcelable(getClass().getClassLoader());
+				mInputList.add(input);
+			}			
 		}
 
 		public String getRequest(){
@@ -36,7 +45,7 @@ public class Form implements Parcelable{
 		public String toString() {
 			String s="Method:["+mMethod+"] Action:["+mAction+"] \n ListInput:[\n";
 			if (mInputList != null) {
-				for(Parcelable input: mInputList){
+				for(Input input: mInputList){
 					s+=input;
 				}
 			}	
@@ -62,11 +71,11 @@ public class Form implements Parcelable{
 			mAction = action;
 		}
 
-		public Parcelable[] getInputList() {
+		public List<Input> getInputList() {
 			return mInputList;
 		}
 
-		public void setInputList(Parcelable[] inputList) {
+		public void setInputList(List<Input> inputList) {
 			mInputList = inputList;
 		}
 
@@ -83,7 +92,15 @@ public class Form implements Parcelable{
 			// TODO Auto-generated method stub
 			dest.writeString(mMethod);
 			dest.writeString(mAction);
-			dest.writeParcelableArray(mInputList,PARCELABLE_WRITE_RETURN_VALUE);	
+			dest.writeInt(mInputList.size());
+			
+			for (int i = 0; i < mInputList.size(); i++) {
+				dest.writeParcelable(mInputList.get(i), PARCELABLE_WRITE_RETURN_VALUE);
+			}
+			
+			
+			
+			
 		}
 
 		@SuppressWarnings({ "rawtypes" })

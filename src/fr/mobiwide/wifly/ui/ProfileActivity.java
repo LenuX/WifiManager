@@ -24,7 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import fr.mobiwide.wifly.Wifly;
+import fr.mobiwide.wifly.EnvWifi;
 import fr.mobiwide.wifly.object.Wifi;
 import fr.mobiwide.wifly.parser.XmlParser;
 
@@ -51,6 +51,15 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 		listview.setOnItemClickListener(this);
 	}
 	
+	
+	/*
+	 * Fonction onCreateDialog
+	 * 
+	 * Cette fonction permet de gerer les actions et le comportement lors d'un clik 
+	 * sur un des items de notre liste.
+	 *
+	 */
+	
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		Dialog dialog = null;
@@ -64,7 +73,7 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 				public void onClick(DialogInterface dialog, int item) {
 					
 					if (item == 0) {
-						String filePath = getFilesDir() + "/" + Wifly.PROFILE_DIR + "/" + mWifi.getFileName();
+						String filePath = getFilesDir() + "/" + EnvWifi.PROFILE_DIR + "/" + mWifi.getFileName();
 						File xmlFile = new File(filePath);
 						xmlFile.delete();
 						mListWifi.remove(mWifi);
@@ -96,10 +105,22 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 		return dialog;
 	}
 	
+	/**
+	 * Fonction loadListWifi
+	 * 
+	 * La fonction va recupere la liste de tout les profils existant dans le dossier profile
+	 * et stoker leur noms dans un tableau de String qui nous permettra de presenter la liste.
+	 * 
+	 * Si le dossier profile n'existe pas, on le cree et le rempli avec deux "faux" profil
+	 * utilises pour les tests. 
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	
 	private void loadListWifi () {
 		
-		String profileDirPath = getFilesDir() + "/" + Wifly.PROFILE_DIR;
+		String profileDirPath = getFilesDir() + "/" + EnvWifi.PROFILE_DIR;
 		File profileDir = new File(profileDirPath);
 		
 		if ( profileDir.isDirectory() ) {
@@ -180,6 +201,7 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 				tv = (TextView) convertView;
 			}
 			tv.setText(getItem(position).getDisplayName());
+			Log.i(TAG, getItem(position).toString());
 			return tv;
 		}
 		

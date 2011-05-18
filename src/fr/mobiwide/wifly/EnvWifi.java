@@ -1,6 +1,6 @@
 package fr.mobiwide.wifly;
 
-public class Wifly {
+public class EnvWifi {
 	
 	/**
 	 * Sub-folder of files/ where profile are contained

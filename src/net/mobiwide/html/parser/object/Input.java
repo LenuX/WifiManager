@@ -41,18 +41,28 @@ public class Input implements Parcelable {
 		this.mValue = in.readString();
 		this.mType = in.readString();
 		
-		//this.mOptionsList = ;
+		int lList = in.readInt();
+		
+		mOptionsList=new ArrayList<String>();
+		
+		for (int i = 0; i < lList; i++) {
+			String string =  in.readString();
+			mOptionsList.add(string);
+		}		
 	}
 	
 	
 	@Override
 	public String toString() {
-		String s = "Input : Type [" + mType + "] Name [" + mName + "] , DefValue ["
+		String s = "Input : Type [" + mType + "] Name [" + mName + "] , Value ["
 				+ mValue + "] , options: {";
-
-		for (String string : mOptionsList) {
-			s += "[" + string + "]";
+		
+		if(mOptionsList!=null){
+			for (String string : mOptionsList) {
+				s += "[" + string + "]";
+			}
 		}
+		
 		s += "}\n";
 		return s;
 
@@ -99,7 +109,12 @@ public class Input implements Parcelable {
 		dest.writeString(mName);
 		dest.writeString(mValue);
 		dest.writeString(mType);
-		//
+		dest.writeInt(mOptionsList.size());
+		
+		for (int j = 0; j < mOptionsList.size(); j++) {
+			dest.writeString(mOptionsList.get(j));
+		}
+		
 	}
 	@SuppressWarnings({ "rawtypes" })
 	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

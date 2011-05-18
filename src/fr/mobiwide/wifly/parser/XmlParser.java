@@ -96,28 +96,28 @@ public class XmlParser {
 		return wifi;
 	}
 
-	public static void write(Wifi wwifi, String file) {
+	public static void write(Wifi mWifi, File file) {
 		//Nous allons commencer notre arborescence en créant la racine XML "wifi"
 		Element wifi = new Element("wifi");
-		wifi.setAttribute(new Attribute("essid", wwifi.getESSID()));   // On ajoute les attributs de la balise wifi
-		wifi.setAttribute(new Attribute("ssid", wwifi.getSSID()));
+		wifi.setAttribute(new Attribute("essid", mWifi.getESSID()));   // On ajoute les attributs de la balise wifi
+		wifi.setAttribute(new Attribute("ssid", mWifi.getSSID()));
 		
 		//On crée un nouveau Document JDOM basé sur la racine que l'on vient de créer
 		Document document = new Document(wifi);
 
 		//On crée un nouvel Element form et on l'ajoute en tant qu'Element de wifi
 		Element form = new Element("form");
-		form.setAttribute(new Attribute("method", wwifi.getForm().getMethod()));
-		form.setAttribute(new Attribute("action", wwifi.getForm().getAction()));
+		form.setAttribute(new Attribute("method", mWifi.getForm().getMethod()));
+		form.setAttribute(new Attribute("action", mWifi.getForm().getAction()));
 		wifi.addContent(form);
 
 		Element inputs = new Element("inputs");
 		form.addContent(inputs);
 		
 		
-		for(int i=0; i<wwifi.getForm().getInputList().size();i++){
+		for(int i=0; i<mWifi.getForm().getInputList().size();i++){
 			Element input = new Element("input");
-			Input inputcourant=wwifi.getForm().getInputList().get(i);
+			Input inputcourant=mWifi.getForm().getInputList().get(i);
 			
 			if(inputcourant.getType().equals("menu")){
 				input.setAttribute(new Attribute("name", inputcourant.getName()));
@@ -125,7 +125,7 @@ public class XmlParser {
 				input.setAttribute(new Attribute("type", inputcourant.getType()));
 				inputs.addContent(input);
 				
-				for(int l=0; l<wwifi.getForm().getInputList().size();l++){
+				for(int l=0; l<inputcourant.getOptionsList().size();l++){
 					Element option = new Element("option");
 					option.setAttribute(new Attribute("value", inputcourant.getOptionsList().get(l)));
 					input.addContent(option);
