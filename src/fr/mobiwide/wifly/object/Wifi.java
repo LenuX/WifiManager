@@ -6,34 +6,34 @@ import net.mobiwide.html.parser.object.Form;
 
 public class Wifi implements Parcelable {
 
-	private String mESSID;
+	private String mBSSID;
 	private String mSSID;
 	private Form mForm;
 
 	public Wifi(String ESSID, String SSID) {
-		mESSID = ESSID;
+		mBSSID = ESSID;
 		mSSID = SSID;
 	}
 
 	public Wifi(Parcel in)
 	{
-		this.mESSID = in.readString();
+		this.mBSSID = in.readString();
 		this.mSSID = in.readString();
 		this.mForm = in.readParcelable(getClass().getClassLoader());
 	}
 
 	public CharSequence getDisplayName() {
-		return mESSID + "--" + mSSID;
+		return mBSSID + "--" + mSSID;
 	}
 
 	public String getFileName() {
 		// return mESSID + "_" + mSSID + ".xml";
-		return mESSID + ".xml";
+		return mBSSID + ".xml";
 	}
 
 	@Override
 	public String toString() {
-		String s = "WIFI [ essid:[" + mESSID + "] ssid:[" + mSSID + "] \n ";
+		String s = "WIFI [ BSSID:[" + mBSSID + "] SSID:[" + mSSID + "] \n ";
 		if (mForm != null) {
 			s += " FORM:[" + mForm + "]";
 		}
@@ -41,12 +41,12 @@ public class Wifi implements Parcelable {
 		return s;
 	}
 
-	public String getESSID() {
-		return mESSID;
+	public String getBSSID() {
+		return mBSSID;
 	}
 
-	public void setESSID(String eSSID) {
-		mESSID = eSSID;
+	public void setBSSID(String BSSID) {
+		mBSSID = BSSID;
 	}
 
 	public String getSSID() {
@@ -74,7 +74,7 @@ public class Wifi implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
-		dest.writeString(mESSID);
+		dest.writeString(mBSSID);
 		dest.writeString(mSSID);
 		dest.writeParcelable(mForm, PARCELABLE_WRITE_RETURN_VALUE);
 	}

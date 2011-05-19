@@ -40,7 +40,7 @@ public class EditProfileActivity extends Activity {
 	LinearLayout linear;										// ProfileAcivity et le stock dans mWifi, on va s'en 
 	LayoutInflater inflater;									// servir pour créer le formulaire Android permettant
 	private Wifi mWifi;											// a l'utilisateur de le modifier.
-	private Form mForm;											//
+	private Form mForm;											
 	private List<Input> inputList;
 
 	@Override
@@ -66,7 +66,7 @@ public class EditProfileActivity extends Activity {
 		inputList = mForm.getInputList();
 		
 		TextView profileName = new TextView(this);				/// CREATION DU TITRE
-		profileName.setText(mWifi.getESSID());profileName.setBackgroundColor(Color.GRAY);
+		profileName.setText(mWifi.getBSSID());profileName.setBackgroundColor(Color.GRAY);
 		profileName.setTextColor(Color.BLACK);profileName.setHeight(25);
 		linear.addView(profileName);
 		

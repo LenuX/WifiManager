@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 public class XmlParser {
 
-//	public static void main(String[] args) {
+//	public static void main(String[] args) {		// main pour tester en local 
 //
 //		Wifi myWifi = read(new File("data/profil_free.xml")); // Fonction qui lit un fichier .xml et construit le Wifi correspondant
 //		//System.out.println(myWifi);
@@ -29,6 +29,18 @@ public class XmlParser {
 //		write(myWifi, new String ("data/write_profil_free.xml")); // Fonction qui convertit un Wifi en .xml 
 //	}
 
+	
+	/**
+	 * Fonction read
+	 * 
+	 * Fonction qui parcours un fichier .xml avec le parser JDom et qui 
+	 * construit un Wifi en remplissant ses champs. 
+	 * 
+	 * 
+	 * @param File (xml)
+	 * @return Wifi
+	 */
+	
 	public static Wifi read(File file) {
 		// On crée une instance de SAXBuilder
 		SAXBuilder sxb = new SAXBuilder();
@@ -58,9 +70,7 @@ public class XmlParser {
 		Form form = new Form(rForm.getAttributeValue("method"),rForm.getAttributeValue("action"));    
 
 		Element rInputs = rForm.getChild("inputs"); 	// On descend d'un niveau (inputs)
-
 		List<Element> listInputs = rInputs.getChildren();// On crée une List contenant tous les input
-		
 		List<Input> inputs = new LinkedList<Input>();		// ArrayList pour stocker les inputs et les ajouter ensuite au Form
 
 		// On crée un Iterator sur notre liste
@@ -95,11 +105,23 @@ public class XmlParser {
 
 		return wifi;
 	}
+	
+	/**
+	 * Fonction write
+	 * 
+	 * Fonction qui convertit un objet Wifi en une arborescence stocker 
+	 * dans un fichier xml correspondant a un profil. 
+	 * 
+	 * 
+	 * @param Wifi (Wifi qu'on veut ecrire) ,File (Fichier xml dans lequel on veut stoker le profil)
+	 * @return void
+	 */
+	
 
 	public static void write(Wifi mWifi, File file) {
 		//Nous allons commencer notre arborescence en créant la racine XML "wifi"
 		Element wifi = new Element("wifi");
-		wifi.setAttribute(new Attribute("essid", mWifi.getESSID()));   // On ajoute les attributs de la balise wifi
+		wifi.setAttribute(new Attribute("essid", mWifi.getBSSID()));   // On ajoute les attributs de la balise wifi
 		wifi.setAttribute(new Attribute("ssid", mWifi.getSSID()));
 		
 		//On crée un nouveau Document JDOM basé sur la racine que l'on vient de créer
@@ -107,11 +129,12 @@ public class XmlParser {
 
 		//On crée un nouvel Element form et on l'ajoute en tant qu'Element de wifi
 		Element form = new Element("form");
-		form.setAttribute(new Attribute("method", mWifi.getForm().getMethod()));
-		form.setAttribute(new Attribute("action", mWifi.getForm().getAction()));
+		form.setAttribute(new Attribute("method", mWifi.getForm().getMethod())); 	// On ajoute les attributs method
+		form.setAttribute(new Attribute("action", mWifi.getForm().getAction()));	// et action a l'element form
 		wifi.addContent(form);
 
-		Element inputs = new Element("inputs");
+		//On crée un nouvel Element inputs et on l'ajoute en tant qu'Element de form
+		Element inputs = new Element("inputs");		
 		form.addContent(inputs);
 		
 		
@@ -119,7 +142,9 @@ public class XmlParser {
 			Element input = new Element("input");
 			Input inputcourant=mWifi.getForm().getInputList().get(i);
 			
-			if(inputcourant.getType().equals("menu")){
+			// Si le form contient un menu deroulant on ajoute les attributs de l'input et on descend d'un 
+			// niveau pour ensuite ecrire la liste des options du menu dans la balise input de type menu 
+			if(inputcourant.getType().equals("menu")){									
 				input.setAttribute(new Attribute("name", inputcourant.getName()));
 				input.setAttribute(new Attribute("value", inputcourant.getValue()));
 				input.setAttribute(new Attribute("type", inputcourant.getType()));
@@ -131,6 +156,7 @@ public class XmlParser {
 					input.addContent(option);
 				}
 			}
+			// Si le form ne contient pas de menu on ajoute juste les attributs de chaque input
 			else{
 				input.setAttribute(new Attribute("name", inputcourant.getName()));
 				input.setAttribute(new Attribute("value", inputcourant.getValue()));
@@ -148,7 +174,7 @@ public class XmlParser {
 		      //avec en argument le nom du fichier pour effectuer la sérialisation.
 		      sortie.output(document, new FileOutputStream(file));
 		   }
-		   catch (java.io.IOException e){
+		   catch (IOException e){
 			   e.printStackTrace();
 		   }
 

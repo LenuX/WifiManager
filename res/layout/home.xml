@@ -10,18 +10,21 @@
     	android:layout_height="wrap_content" 
     	android:text="WifiConnector - Accueil"/>
     	<Button android:id="@+id/buttonList"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Voir vos profils" />
-        <Button android:id="@+id/buttonEdit"
-            android:layout_width="wrap_content"
+        <Button android:id="@+id/buttonNew"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Nouveau Profil" />   
     	 <Button android:id="@+id/buttonLoad"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Load fake" />   
-
+		 <Button android:id="@+id/buttonWifi"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Liste Wifis" /> 
     </LinearLayout>
 
 

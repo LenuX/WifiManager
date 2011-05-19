@@ -6,12 +6,6 @@
   android:layout_height="wrap_content">
   		<TextView
         android:id="@+id/textLabel"
-        android:text="Login :"
-        android:layout_weight="1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-  	    <EditText
-        android:id="@+id/text"
         android:layout_weight="1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>

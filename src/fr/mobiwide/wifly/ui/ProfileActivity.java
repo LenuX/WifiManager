@@ -35,7 +35,6 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 	private List<Wifi> mListWifi = new LinkedList<Wifi>();
 	private Wifi mWifi;
 	private MyListAdapter mAdapter;
-	private int activityID = 0x100;
 	
 	static final int DG_ACTION = 0;
 	
@@ -87,7 +86,7 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 
 						Intent intent = new Intent().setClass(ProfileActivity.this, EditProfileActivity.class);
 						intent.putExtra("mWifi", mWifi);
-						startActivityForResult(intent, activityID);
+						startActivity(intent);
 					
 					}
 					else if (item == 2) {
