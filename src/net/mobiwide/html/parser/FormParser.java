@@ -120,7 +120,6 @@ public class FormParser {
 		
 		else if (element.getName().equals("select")) {
 			
-			System.out.println("222");
 			Input SI = new Input(element.getAttributeValue("name"),element.getAttributeValue("value"), "menu", null);
 				// Liste qui contiendra les options du menu
 			ArrayList<String> options = new ArrayList<String>();

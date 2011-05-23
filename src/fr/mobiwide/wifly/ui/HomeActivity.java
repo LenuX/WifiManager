@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import net.mobiwide.html.parser.FormParser;
+import net.mobiwide.html.parser.object.Form;
 import net.mobiwide.utils.FileUtils;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +22,8 @@ public class HomeActivity extends Activity {
 	
 	private static final String TAG = "HomeActivity";
 	private Wifi mWifi;
-		
+	private Form mForm;	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,19 +55,22 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(View actuelView)
 			{
-				// Async Task
+				// Async Task : elle recupere la page html et la stocke en local
 				RequestTask task = new RequestTask(getApplicationContext());
 				task.execute();
+				
+				while(!task.getTaskCompleted()){
+					
+				}
 				
 				//On recupere le wifi créer par la RequestTask:
 				//mWifi = task.getWifi();
 				//Log.i(TAG, "WIFI FINALE APRES RETOUR HOME" + mWifi.toString());
 				
-//				//On transmet l'ojet Wifi completement rempli a l'activité suivante en la démarant:
-//				Intent intent = new Intent().setClass(HomeActivity.this, EditProfileActivity.class);
-//				
-//				intent.putExtra("mWifi", mWifi);
-//				startActivityForResult(intent, activityID);
+				//On transmet l'ojet Wifi completement rempli a l'activité suivante en la démarant:
+				Intent intent = new Intent().setClass(HomeActivity.this, EditProfileActivity.class);
+				//intent.putExtra("mWifi", mWifi);
+				startActivity(intent);
 			}
 		};
 		

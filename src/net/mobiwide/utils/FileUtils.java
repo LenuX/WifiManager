@@ -37,29 +37,12 @@ public class FileUtils {
 	public static void writeStringToFile(String content, String pathToFile) throws IOException {
 	
 		File htmlFile = new File(pathToFile);
-		
-		PrintWriter print = new PrintWriter(htmlFile);
-		
-		print.print(content);
+		OutputStream out = new FileOutputStream(htmlFile);
+		byte [] buff =  content.getBytes();
+		out.write(buff);
+		out.close();
 		
 		Log.i(TAG, "Writing finished");
-		
-		// Affichage pour verifier le contenu :
-		
-//		InputStreamReader flog = null;
-//		LineNumberReader llog = null;
-//		String myLine = null;
-//		try{ 
-//			flog = new InputStreamReader(new FileInputStream("pathToFile") );
-//			llog = new LineNumberReader(flog);
-//			while ((myLine = llog.readLine()) != null) { 
-//	                      // --- Affichage de la ligne lu depuis le fichier
-//	                      System.out.println("Ligne : "+myLine);
-//	                }
-//	        }catch (Exception e){
-//	               // --- Gestion erreur lecture du fichier (fichier non existant, illisible, etc.)
-//	               System.err.println("Error : "+e.getMessage());
-//	        }
 
 	}
 	

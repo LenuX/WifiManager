@@ -51,7 +51,7 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 	}
 	
 	
-	/*
+	/**
 	 * Fonction onCreateDialog
 	 * 
 	 * Cette fonction permet de gerer les actions et le comportement lors d'un clik 
@@ -79,10 +79,6 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 						mAdapter.notifyDataSetChanged();
 					}
 					else if (item == 1) {
-//						Toast.makeText(getApplicationContext(), mWifi.toString(), Toast.LENGTH_SHORT).show();
-						
-//						Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-//						startActivity(intent);
 
 						Intent intent = new Intent().setClass(ProfileActivity.this, EditProfileActivity.class);
 						intent.putExtra("mWifi", mWifi);
@@ -139,25 +135,6 @@ public class ProfileActivity extends ListActivity implements OnItemClickListener
 			}
 			
 		}
-		else {
-			profileDir.mkdir();
-			
-			Log.i(TAG, "Loading fake data .");
-			// Data for test 
-			InputStream in;
-			try {
-				in = getAssets().open("data/profil_free.xml");
-				FileUtils.inputStreamToFile(in, getFilesDir() + "/profile/freewifi.xml");
-				
-				in = getAssets().open("data/profil_aruba.xml");
-				FileUtils.inputStreamToFile(in, getFilesDir() + "/profile/Univmed.xml");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		
 		
 	}
 	

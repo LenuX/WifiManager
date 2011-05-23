@@ -2,8 +2,14 @@ package fr.mobiwide.wifly.ui;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import me.rabgs.http.Browser;
 import net.mobiwide.html.parser.object.Form;
 import net.mobiwide.html.parser.object.Input;
 import android.app.Activity;
@@ -51,13 +57,14 @@ public class EditProfileActivity extends Activity {
         Bundle extras = getIntent().getExtras();		// Bundle permettant d'echanger des objets entre activités
         mWifi = extras.getParcelable("mWifi");		// On recupere l'objet choisi dans ProfileActivity 
 		
+        Log.i(TAG, mWifi.toString());
+        
 		linear = (LinearLayout) findViewById(R.id.layoutlist); 							// Layout declare en xml
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		try {
 			//readFromHtml();
 			mForm = mWifi.getForm();				// On recupere le Form
-			Log.i(TAG, mForm.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,7 +73,7 @@ public class EditProfileActivity extends Activity {
 		inputList = mForm.getInputList();
 		
 		TextView profileName = new TextView(this);				/// CREATION DU TITRE
-		profileName.setText(mWifi.getBSSID());profileName.setBackgroundColor(Color.GRAY);
+		profileName.setText(mWifi.getSSID());profileName.setBackgroundColor(Color.GRAY);
 		profileName.setTextColor(Color.BLACK);profileName.setHeight(25);
 		linear.addView(profileName);
 		
@@ -109,7 +116,9 @@ public class EditProfileActivity extends Activity {
 		
 		if(input.getType().equals("text")){		// L'Input selectionne est de type text
 			final EditText text = new EditText(this);		
-			text.setText("Entrer votre texte :)");
+			text.setHint("Entrer votre texte :)");
+			if(input.getValue()!=null) text.setText(input.getValue());
+
 	
 			text.addTextChangedListener(new TextWatcher() { // Watcher pour effectuer des actions si le text est modifie
 				
@@ -132,7 +141,8 @@ public class EditProfileActivity extends Activity {
 		else if(input.getType().equals("password")){		// L'input est de type password
 
 			final TextView password = new EditText(this);
-			password.setText("********");
+			password.setHint("password");
+			if(input.getValue()!=null) password.setText(input.getValue());
 			
 			password.addTextChangedListener(new TextWatcher() { // Watcher pour effectuer des actions si le text est modifie
 				
@@ -156,7 +166,7 @@ public class EditProfileActivity extends Activity {
 			if(input.getValue()==null){
 				submit.setText("Submit");}			// On met du texte sur le bouton (le nom de l'input ou
 			else{										// submit si le nom est null
-				submit.setText(input.getName());}
+				submit.setText(input.getValue());}
 			
 			submit.setOnClickListener(new OnClickListener()
 			{
@@ -164,9 +174,26 @@ public class EditProfileActivity extends Activity {
 				public void onClick(View actuelView) // On defini l'action sur clik du bouton Submit 
 				{	
 					Toast.makeText(getApplicationContext() ,mWifi.toString(), Toast.LENGTH_LONG).show();
+					
+					// On remplace l'ancien profile
 					File profil = new File( getFilesDir()+"/"+ EnvWifi.PROFILE_DIR +"/"+mWifi.getFileName());
 					profil.delete();
 					XmlParser.write(mWifi,profil);
+					Log.i(TAG, getFilesDir()+"/"+ EnvWifi.PROFILE_DIR +"/"+mWifi.getFileName());
+					
+//					//On emet la requete POST pour s'authentifier
+//					DefaultHttpClient mHttpClient = Browser.mDefaultHttpClient("Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.17) Gecko/20110422 Ubuntu/10.04 (lucid) Firefox/3.6.17");
+//					
+//					List<NameValuePair> postData = new LinkedList<NameValuePair>();
+//					
+//					for (Input input : mForm.getInputList()) {
+//						// beware value sent for checkbox
+//						BasicNameValuePair data = new BasicNameValuePair(input.getName(), input.getValue());
+//						postData.add(data);
+//						System.out.println(data);
+//					}
+//					
+//					Browser.httpPostResponse("https://securelogin.arubanetworks.com" +mForm.getAction(), true, mHttpClient, postData);
 				}
 			});
 			return submit;

@@ -28,7 +28,7 @@ public class Wifi implements Parcelable {
 
 	public String getFileName() {
 		// return mESSID + "_" + mSSID + ".xml";
-		return mBSSID + ".xml";
+		return mSSID + ".xml";
 	}
 
 	@Override
