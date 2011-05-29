@@ -66,11 +66,12 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean>{
 				url="https://securelogin.arubanetworks.com/upload/custom/UNIVMED_CP/gauche.htm";
 				Log.i(TAG, "ARUBA with redirect :");	
 			}
-			if(mWifiInfo.getSSID().equals("LeTrouviere")){
-				
-				mBrowser.doHttpGet("http://192.168.0.12/wifly/aruba.html");
+			//if(mWifiInfo.getSSID().equals("LeTrouviere")){
+			if(mWifiInfo.getSSID().equals("RABGS")){	
+				url="http://192.168.0.6/WifiManager/aruba.html";
+				mBrowser.doHttpGet(url);
 				//Browser.httpGetResponse("http://www.google.com", true, mHttpClient);
-				url="http://192.168.0.12/wifly/aruba.html";
+				
 			}
 			
 			// On emet une requete get pour recuperer la page d'authentification
