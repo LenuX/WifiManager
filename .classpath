@@ -5,6 +5,6 @@
 	<classpathentry kind="lib" path="libs/jdom.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="libs/crawler.jar"/>
+	<classpathentry kind="lib" path="libs/Browser.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
