@@ -24,7 +24,7 @@ public class Wifi implements Parcelable {
 	}
 
 	public CharSequence getDisplayName() {
-		return mBSSID + "--" + mSSID;
+		return mSSID;
 	}
 
 	public String getFileName() {
