@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="fr.esil.wificonnector"
       android:versionCode="1"
-      android:versionName="1.0" package="fr.mobiwide.wifly">
-      
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      android:versionName="1.0">
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
+
+    <application android:icon="@drawable/iconwc" android:label="@string/app_name">
         <activity android:name=".ui.HomeActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -21,6 +18,25 @@
         
         <activity android:name=".ui.EditProfileActivity" />
         
-        <activity android:name=".ui.WifiTester" />
+         <service android:name=".service.WifiService"
+        		 android:exported="true"
+        		 android:permission="fr.esil.wificonnector.service.BACKGROUNDSERVICE_PERMISSION"
+        /> 
+        
+        <receiver android:name=".service.WifiServiceReceiver" >
+            <intent-filter>
+        		<action android:name="android.net.wifi.STATE_CHANGE"/>
+        		<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+        	</intent-filter>
+		</receiver>
+
     </application>
+    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+	<permission android:name="fr.esil.wificonnector.service.BACKGROUNDSERVICE_PERMISSION" /> 
+	<uses-permission android:name="fr.esil.wificonnector.service.BACKGROUNDSERVICE_PERMISSION"/>
+	
 </manifest>

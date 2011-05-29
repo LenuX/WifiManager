@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, mainActivity!</string>
-	<string name="app_name">WifiConnector</string>
-	
-	<string-array name="options_array">
-	</string-array>
-
+    <string name="hello">Hello World, HomeActivity!</string>
+    <string name="app_name">Wifi Connector</string>
+    <string name="tag_notif">Wifi notif</string>
 </resources>

@@ -64,12 +64,12 @@ public class HomeActivity extends Activity {
 				}
 				
 				//On recupere le wifi créer par la RequestTask:
-				//mWifi = task.getWifi();
-				//Log.i(TAG, "WIFI FINALE APRES RETOUR HOME" + mWifi.toString());
+				mWifi = task.getWifi();
+				Log.i(TAG, "WIFI FINALE APRES RETOUR HOME" + mWifi.toString());
 				
 				//On transmet l'ojet Wifi completement rempli a l'activité suivante en la démarant:
 				Intent intent = new Intent().setClass(HomeActivity.this, EditProfileActivity.class);
-				//intent.putExtra("mWifi", mWifi);
+				intent.putExtra("mWifi", mWifi);
 				startActivity(intent);
 			}
 		};

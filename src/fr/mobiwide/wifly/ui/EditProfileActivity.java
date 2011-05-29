@@ -175,25 +175,32 @@ public class EditProfileActivity extends Activity {
 				{	
 					Toast.makeText(getApplicationContext() ,mWifi.toString(), Toast.LENGTH_LONG).show();
 					
-					// On remplace l'ancien profile
+					// On remplace l'ancien profil
 					File profil = new File( getFilesDir()+"/"+ EnvWifi.PROFILE_DIR +"/"+mWifi.getFileName());
 					profil.delete();
 					XmlParser.write(mWifi,profil);
 					Log.i(TAG, getFilesDir()+"/"+ EnvWifi.PROFILE_DIR +"/"+mWifi.getFileName());
 					
-//					//On emet la requete POST pour s'authentifier
-//					DefaultHttpClient mHttpClient = Browser.mDefaultHttpClient("Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.17) Gecko/20110422 Ubuntu/10.04 (lucid) Firefox/3.6.17");
-//					
-//					List<NameValuePair> postData = new LinkedList<NameValuePair>();
-//					
-//					for (Input input : mForm.getInputList()) {
-//						// beware value sent for checkbox
-//						BasicNameValuePair data = new BasicNameValuePair(input.getName(), input.getValue());
-//						postData.add(data);
-//						System.out.println(data);
-//					}
-//					
-//					Browser.httpPostResponse("https://securelogin.arubanetworks.com" +mForm.getAction(), true, mHttpClient, postData);
+					//On emet la requete POST pour s'authentifier
+					DefaultHttpClient mHttpClient = Browser.mDefaultHttpClient("Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.17) Gecko/20110422 Ubuntu/10.04 (lucid) Firefox/3.6.17");
+					
+					List<NameValuePair> postData = new LinkedList<NameValuePair>();
+					
+					for (Input input : mForm.getInputList()) {
+						// beware value sent for checkbox
+						BasicNameValuePair data = new BasicNameValuePair(input.getName(), input.getValue());
+						postData.add(data);
+						System.out.println(data);
+					}
+					
+					if(mWifi.getSSID().equals("UNIVMED")){
+						Browser.httpPostResponse("https://securelogin.arubanetworks.com" +mForm.getAction(), true, mHttpClient, postData);
+						Log.i(TAG, "https://securelogin.arubanetworks.com" +mForm.getAction());		
+						}
+					else{
+						Browser.httpPostResponse(mForm.getAction(), true, mHttpClient, postData);
+						Log.i(TAG, mForm.getAction());
+						}
 				}
 			});
 			return submit;

@@ -50,7 +50,8 @@ public class FormParser {
 		
 		//Pour instancier notre Form, on donne a la fonction displaySegments la liste des Element a traiter, 
 		//ici on s'interesse uniquement a ceux qui sont contenu dans une balise FORM
-		form=displaySegments(source.getAllElements(HTMLElementName.FORM));
+		form=displaySegments(source.getAllElements(HTMLElementName.HTML));
+		
 		
 		return form;
 	}
