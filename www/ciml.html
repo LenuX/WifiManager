@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Web Authentication</title>
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style>
+<!--
+DIV.sidebar {
+    RIGHT: 0px;
+    POSITION: absolute;
+    TOP: -1px;
+    HEIGHT: 100%;
+    width: 200;
+}
+DIV.graybar {
+    RIGHT: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 100%; BACKGROUND-COLOR: #f8f8f8
+}
+/* background not be shown for NEC */
+
+DIV.header {
+    BACKGROUND-POSITION: right 50%; LEFT: 0px; BACKGROUND-IMAGE:  url(images/background_web41.jpg); WIDTH: 100%; BACKGROUND-REPEAT: repeat; POSITION: absolute; TOP: 0px; HEIGHT: 52px; BACKGROUND-COLOR: #FFFFFF}
+
+
+DIV.content {
+    LEFT: 14px; MARGIN: 15px; POSITION: absolute; TOP: 60px
+}
+H1 {
+    FONT-WEIGHT: bold; FONT-SIZE: 19px; MARGIN: 16px 0px 0px 25px; COLOR: #ffffff; FONT-FAMILY: Tahoma, Arial, Helvetica, sans-serif
+}
+H2 {
+    FONT-WEIGHT: bold; FONT-SIZE: 15px; MARGIN: 10px 0px 0px 10px; COLOR: #336666; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+INPUT {
+    FONT-SIZE: 12px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+INPUT.button {
+    MARGIN-TOP: 10px; FONT-WEIGHT: bold; WIDTH: 80px; COLOR: #ffffff; BACKGROUND-COLOR: #669999
+}
+P {
+    FONT-SIZE: 12px; MARGIN: 0px 0px 10px; COLOR: #001133; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD {
+    FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #336666; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD.message {
+    FONT-WEIGHT: normal; COLOR: #000000
+}
+-->
+</STYLE>
+<script language="javascript" src="./loginscript.js"></script>
+<script>
+    var url = "";
+    if(url != ""){
+        var link = document.location.href;
+        var searchString = "?redirect=";
+        var equalIndex = link.indexOf(searchString);
+        var redirectUrl = "";
+        if(equalIndex > 0) {
+                equalIndex += searchString.length;
+                redirectUrl += link.substring(equalIndex);
+                //attach the redirect url only if the ext web auth url doesn't contain it
+                searchString = "&redirect=";
+                equalIndex = url.indexOf(searchString);
+                if(equalIndex < 0){
+                    url+= "&redirect=";
+                    url+=redirectUrl;
+                }
+        }
+        window.location.href = url;
+    }
+
+function getErrorMsgIfAny(){
+ if(document.forms[0].err_flag.value == 1){
+    document.writeln(' \
+     <tr align="center"> <td colspan="2" style="color:#CC0000">Login Error.</td>\
+     </tr><tr align="center"> <td width="350" class="message" colspan="2">The User Name and Password combination you have entered is invalid. Please try again.</td></tr>\
+    <tr> <td class="caption" colspan="2">&nbsp;</td></tr>');
+ }else{
+   document.writeln(' ');
+ }
+}
+</script>
+</head>
+<body bgcolor="#ffffff" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<FORM method="post" ACTION="/login.html">
+
+<INPUT TYPE="hidden" NAME="buttonClicked" SIZE="16" MAXLENGTH="15" VALUE="0">
+<INPUT TYPE="hidden" NAME="err_flag" SIZE="16" MAXLENGTH="15" VALUE="0">
+<INPUT TYPE="hidden" NAME="err_msg" SIZE="32" MAXLENGTH="31" VALUE="">
+<INPUT TYPE="hidden" NAME="info_flag" SIZE="16" MAXLENGTH="15" VALUE="0">
+<INPUT TYPE="hidden" NAME="info_msg" SIZE="32" MAXLENGTH="31" VALUE="">
+<INPUT TYPE="hidden" NAME="redirect_url" SIZE="255" MAXLENGTH="255" VALUE="">
+  <div class="header">
+
+    <h1>Login</h1>
+  </div>
+  <div class="content">
+    <h2>CIML Guest access</h2>
+
+    <table border="0" cellspacing="10" cellpadding="0" width="350">
+      <tr>
+        <td colspan="2" class="message">
+          <p>CIML Guest access</p>
+        </td>
+      </tr>
+        <script>
+        getErrorMsgIfAny();
+        </script>
+      <tr>
+
+        <td width="100">User Name</td>
+        <td>
+          <INPUT type="TEXT" name="username" SIZE="25" MAXLENGTH="63" VALUE="">
+        </td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>
+
+          <INPUT type="Password" name="password" emweb_type=PASSWORD autocomplete="off" EMWEB_TYPE=PASSWORD onKeyPress="submitOnEnter(event);" SIZE="25" MAXLENGTH="63" VALUE="">
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+
+<script>getHtmlForButton("Submit","Submit","button","submitAction()"); </script>
+        </td>
+
+      </tr>
+
+    </table>
+  </div>
+  <div class="sidebar">
+    <table width="200" cellpadding="0" cellspacing="0" border="0">
+    <TBODY>
+      <tr>
+
+        <TD style="padding-bottom: 4px; padding-right: 20px; height=53 align="right" background="images/background_web41.jpg</td>
+
+      </tr>
+      <tr>
+		  <td align="right" style="padding-top: 25px; padding-right: 20px;" 
+			  bgcolor="#99cccc" >
+
+			   <div ></div></td>
+      </tr>
+      </TBODY>
+    </table>
+  </div>
+</FORM>
+</body>
+<HEAD>
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+</HEAD>
+
+</html>
